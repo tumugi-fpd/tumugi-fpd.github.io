@@ -1,1083 +1,728 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>メル ｜ フェアリーメッセンジャー ✦ Fairy bookstore</title>
-  <meta name="description" content="フェアリー・ティアラの付き人、メルがティアラからのお告げをやさしくお届けします。本人鑑定・ペア鑑定承ります。" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>つむぎ ― 四柱推命鑑定士</title>
+<meta name="description" content="つむぎ｜四柱推命鑑定士。あなたの人生の糸をひもとき、未来の道しるべをつむぎます。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700&family=Zen+Maru+Gothic:wght@300;400;500;700&family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --gold:#c9a84c;
+  --gold-l:#e2d1a0;
+  --gold-xl:#f0e8d4;
+  --green:#5a8a3c;
+  --green-l:#8db573;
+  --green-xl:#d2e4c4;
+  --green-bg:#eef4e8;
+  --cream:#faf8f2;
+  --warm:#f5f0e5;
+  --white:#fff;
+  --text:#3e3a30;
+  --text-l:#7a7568;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:'Zen Maru Gothic',sans-serif;
+  color:var(--text);
+  background:var(--cream);
+  line-height:1.9;
+  font-weight:400;
+  overflow-x:hidden;
+}
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;700&family=Cinzel:wght@400;600&display=swap" rel="stylesheet" />
+/* ══ DECORATIVE DIVIDER ══ */
+.deco-div{
+  display:flex;align-items:center;justify-content:center;gap:.6rem;
+  margin-bottom:1.8rem;
+}
+.deco-div::before,.deco-div::after{
+  content:'';width:50px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.deco-div span{
+  font-family:'Shippori Mincho',serif;
+  font-size:clamp(1.2rem,3.5vw,1.5rem);
+  font-weight:600;
+  color:var(--text);
+  letter-spacing:.12em;
+}
+.deco-div .sparkle{
+  color:var(--gold);
+  font-size:.7em;
+}
 
-  <style>
-    /* ===================================================
-       Fairy bookstore / メル LP — スタイル
-       =================================================== */
+/* ══ LEAF DECORATIONS ══ */
+.leaf{position:absolute;pointer-events:none;opacity:.15}
+.leaf svg{fill:var(--green-l)}
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* ══ HERO ══ */
+.hero{
+  position:relative;
+  min-height:100vh;min-height:100svh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  overflow:hidden;
+}
+.hero__bg{
+  position:absolute;inset:0;
+  background:
+    url('assets/profile.jpg') center 30%/cover no-repeat,
+    linear-gradient(180deg,
+      #8db573 0%,
+      #a4c68f 15%,
+      #7aab8a 30%,
+      #6a9f7e 45%,
+      #8fc4b0 55%,
+      #b5d8c4 70%,
+      #d6e8d0 85%,
+      #faf8f2 100%
+    );
+  z-index:0;
+}
+.hero__bg::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,
+    rgba(90,138,60,.15) 0%,
+    rgba(0,0,0,.05) 30%,
+    rgba(0,0,0,.1) 50%,
+    rgba(250,248,242,.7) 85%,
+    rgba(250,248,242,1) 100%
+  );
+}
+.hero__content{
+  position:relative;z-index:2;
+  padding:2rem;
+}
+.hero__title{
+  font-family:'Shippori Mincho',serif;
+  font-size:clamp(3rem,10vw,5.5rem);
+  font-weight:700;
+  color:var(--white);
+  text-shadow:0 2px 30px rgba(0,0,0,.35),0 0 80px rgba(201,168,76,.4),0 0 120px rgba(90,138,60,.2);
+  letter-spacing:.2em;
+  line-height:1.3;
+}
+.hero__sub{
+  display:flex;align-items:center;justify-content:center;gap:.5rem;
+  margin-top:.8rem;
+  font-family:'Shippori Mincho',serif;
+  font-size:clamp(.85rem,2.5vw,1.1rem);
+  color:var(--gold);
+  letter-spacing:.3em;
+  text-shadow:0 1px 15px rgba(0,0,0,.4);
+}
+.hero__sub::before,.hero__sub::after{
+  content:'✦';font-size:.6em;color:var(--gold);
+}
+.hero__tagline{
+  margin-top:1.5rem;
+  font-size:clamp(.78rem,2vw,.9rem);
+  color:rgba(255,255,255,.9);
+  letter-spacing:.1em;
+  line-height:2;
+  text-shadow:0 1px 12px rgba(0,0,0,.35);
+  font-weight:400;
+}
+.hero__scroll{
+  margin-top:2.5rem;
+  width:1px;height:50px;
+  background:linear-gradient(to bottom,var(--gold-l),transparent);
+  display:inline-block;
+  animation:scroll-d 2.5s ease-in-out infinite;
+}
+@keyframes scroll-d{0%,100%{opacity:.6;transform:translateY(0)}50%{opacity:.2;transform:translateY(12px)}}
 
-    :root {
-      --fairy-dark:   #0d0d1a;
-      --fairy-navy:   #111228;
-      --fairy-mid:    #1a1a35;
-      --fairy-purple: #2a1a4e;
-      --gold:         #e8c97a;
-      --gold-light:   #f5e4a8;
-      --pink:         #f0c0d8;
-      --pink-light:   #fce4ef;
-      --white:        #ffffff;
-      --white-soft:   rgba(255,255,255,0.92);
-      --white-dim:    rgba(255,255,255,0.72);
-      --font-serif:   'Noto Serif JP', serif;
-      --font-display: 'Cinzel', serif;
-      --radius:       16px;
-      --radius-lg:    28px;
-    }
+/* ══ GOLDEN BORDER TOP ══ */
+.gold-border{
+  height:3px;
+  background:linear-gradient(90deg,transparent,var(--gold),var(--gold-l),var(--gold),transparent);
+}
 
-    html { scroll-behavior: smooth; }
+/* ══ TOP CTA ══ */
+.top-cta{
+  padding:0 1.5rem;
+  margin-top:-1.5rem;
+  position:relative;z-index:3;
+}
+.top-cta__link{
+  display:flex;align-items:center;gap:.9rem;
+  max-width:480px;margin:0 auto;
+  padding:.85rem 1.3rem;
+  background:linear-gradient(135deg,#06C755,#4dd88a);
+  border-radius:50px;
+  text-decoration:none;color:#fff;
+  box-shadow:0 6px 24px rgba(6,199,85,.2);
+  transition:transform .3s,box-shadow .3s;
+  position:relative;overflow:hidden;
+}
+.top-cta__link:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(6,199,85,.3)}
+.top-cta__pulse{position:absolute;top:10px;right:14px;width:7px;height:7px;background:#fff;border-radius:50%;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(2)}}
+.top-cta__icon{flex-shrink:0;width:38px;height:38px;background:rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.top-cta__body{display:flex;flex-direction:column;gap:.1rem}
+.top-cta__label{font-size:.88rem;font-weight:700;letter-spacing:.04em}
+.top-cta__sub{font-size:.68rem;opacity:.85}
 
-    body {
-      font-family: var(--font-serif);
-      background-color: var(--fairy-dark);
-      color: var(--white-soft);
-      line-height: 1.85;
-      overflow-x: hidden;
-    }
+/* ══ SECTIONS ══ */
+section{padding:4.5rem 1.5rem}
+.section-inner{max-width:720px;margin:0 auto}
 
-    img { max-width: 100%; display: block; }
-    a   { color: inherit; text-decoration: none; }
+/* ══ ABOUT ══ */
+.about{
+  background:var(--cream);
+  position:relative;overflow:hidden;
+}
+.about__text{
+  font-size:.9rem;color:var(--text);line-height:2.2;font-weight:300;
+  text-align:center;max-width:520px;margin:0 auto 2.5rem;
+}
+.about__features{
+  display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;
+}
+.about__feat{
+  text-align:center;width:120px;
+}
+.about__feat-circle{
+  width:80px;height:80px;
+  border:1.5px solid var(--gold-l);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto .7rem;
+  font-size:1.5rem;
+  background:var(--white);
+  box-shadow:0 2px 12px rgba(201,168,76,.08);
+}
+.about__feat-text{
+  font-size:.72rem;color:var(--text);line-height:1.6;letter-spacing:.02em;
+}
 
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
+/* ══ STATS ══ */
+.stats{
+  background:var(--green-bg);
+  padding:3rem 1.5rem;
+}
+.stats__row{
+  display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;
+  max-width:500px;margin:0 auto;
+}
+.stats__item{
+  text-align:center;
+  background:var(--white);
+  border:1.5px solid var(--green-xl);
+  border-radius:14px;
+  padding:.8rem 1.2rem;
+  min-width:100px;
+}
+.stats__num{
+  font-family:'Shippori Mincho',serif;
+  font-size:1.4rem;font-weight:700;color:var(--green);line-height:1.2;
+}
+.stats__unit{font-size:.75rem;color:var(--green);font-weight:500}
+.stats__label{display:block;font-size:.62rem;color:var(--text-l);margin-top:.15rem}
 
-    .section-pad { padding: 100px 0; }
+/* ══ MENU ══ */
+.menu{background:var(--warm);position:relative;overflow:hidden}
+.menu__grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:.8rem;
+  max-width:500px;
+  margin:0 auto;
+}
+.menu__card{
+  display:block;
+  background:var(--white);
+  border:1px solid var(--gold-xl);
+  border-radius:12px;
+  overflow:hidden;
+  text-decoration:none;color:inherit;
+  transition:transform .3s,box-shadow .3s;
+}
+.menu__card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(201,168,76,.1)}
+.menu__card-img{
+  width:100%;aspect-ratio:4/3;
+  object-fit:cover;
+  display:block;
+}
+.menu__card-body{padding:.8rem .7rem}
+.menu__card-name{
+  font-family:'Shippori Mincho',serif;
+  font-size:.85rem;font-weight:600;
+  color:var(--text);letter-spacing:.06em;
+  text-align:center;margin-bottom:.3rem;
+}
+.menu__card-desc{
+  font-size:.65rem;color:var(--text-l);
+  text-align:center;line-height:1.7;
+}
 
-    /* ---------- ヘッダー ---------- */
-    .site-header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 14px 0;
-      background: rgba(10,10,26,0.75);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(200,180,255,0.1);
-      transition: background 0.3s;
-    }
-    .header-inner {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-    .site-logo {
-      font-size: 1rem;
-      font-weight: 500;
-      color: var(--gold-light);
-      letter-spacing: 0.05em;
-      white-space: nowrap;
-    }
-    .header-nav {
-      display: flex;
-      gap: 24px;
-      flex-wrap: wrap;
-    }
-    .header-nav a {
-      font-size: 0.78rem;
-      letter-spacing: 0.08em;
-      color: var(--white-dim);
-      transition: color 0.3s;
-    }
-    .header-nav a:hover { color: var(--gold-light); }
+/* ══ OPENCHAT ══ */
+.openchat{
+  background:linear-gradient(180deg,var(--green-bg),var(--cream));
+  text-align:center;
+}
+.openchat__box{
+  max-width:520px;margin:0 auto;
+  background:var(--white);
+  border:1.5px solid var(--green-xl);
+  border-radius:20px;
+  padding:2rem 1.5rem;
+  position:relative;overflow:hidden;
+}
+.openchat__box::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--green-l),var(--gold),var(--green-l));
+}
+.openchat__desc{
+  font-size:.82rem;color:var(--text-l);line-height:2;
+  margin-bottom:1.2rem;font-weight:300;
+}
+.openchat__feats{
+  display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;
+  margin-bottom:1.5rem;
+}
+.openchat__feat{
+  text-align:center;width:100px;
+}
+.openchat__feat-circle{
+  width:60px;height:60px;
+  border:1.5px solid var(--green-xl);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto .4rem;
+  font-size:1.1rem;
+  background:var(--green-bg);
+}
+.openchat__feat-text{font-size:.62rem;color:var(--text);line-height:1.5}
+.openchat__btn{
+  display:inline-flex;align-items:center;gap:.6rem;
+  padding:.85rem 2.2rem;
+  background:#06C755;color:#fff;
+  font-size:.85rem;font-weight:700;
+  letter-spacing:.06em;
+  text-decoration:none;border-radius:50px;
+  transition:background .3s,transform .3s;
+  box-shadow:0 4px 16px rgba(6,199,85,.2);
+}
+.openchat__btn:hover{background:#05a84a;transform:translateY(-2px)}
+.openchat__btn svg{width:18px;height:18px;fill:currentColor}
+.openchat__note{margin-top:.7rem;font-size:.65rem;color:var(--text-l)}
 
-    /* ---------- ヒーロー ---------- */
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 120px 24px 80px;
-      overflow: hidden;
-      background:
-        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(90,60,180,0.25) 0%, transparent 70%),
-        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(180,120,220,0.12) 0%, transparent 60%),
-        linear-gradient(180deg, #0a0a1a 0%, #0d0d2a 50%, #0a0d1e 100%);
-      z-index: 1;
-    }
-    .hero-glows { position: absolute; inset: 0; pointer-events: none; }
-    .glow {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(90px);
-      opacity: 0.25;
-    }
-    .g1 { width: 600px; height: 400px; background: #6040c0; top: -10%; left: 10%; }
-    .g2 { width: 400px; height: 300px; background: #a060d0; bottom: 5%; right: 5%; }
-    .g3 { width: 300px; height: 200px; background: #e0a0c0; top: 30%; right: 15%; }
+/* ══ FLOW ══ */
+.flow{background:var(--cream)}
+.flow__steps{
+  display:flex;justify-content:center;gap:.3rem;flex-wrap:wrap;
+  max-width:600px;margin:0 auto;
+}
+.flow__step{
+  text-align:center;width:100px;position:relative;
+}
+.flow__step-num{
+  font-size:.6rem;font-weight:700;color:var(--gold);
+  letter-spacing:.08em;margin-bottom:.3rem;
+}
+.flow__step-circle{
+  width:56px;height:56px;
+  border:1.5px solid var(--gold-l);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto .5rem;
+  font-size:1.2rem;
+  background:var(--white);
+}
+.flow__step-title{font-size:.68rem;font-weight:700;color:var(--text);margin-bottom:.2rem}
+.flow__step-desc{font-size:.58rem;color:var(--text-l);line-height:1.5}
+.flow__arrow{
+  display:flex;align-items:center;
+  color:var(--gold-l);font-size:.7rem;
+  padding-top:1.8rem;
+}
 
-    .hero-content {
-      position: relative;
-      z-index: 2;
-    }
+/* ══ VOICE ══ */
+.voice{
+  background:linear-gradient(180deg,var(--cream),var(--warm));
+}
+.voice__list{display:flex;flex-direction:column;gap:1.2rem}
+.voice__card{
+  background:var(--white);
+  border:1px solid var(--gold-xl);
+  border-radius:16px;
+  padding:1.3rem 1.4rem;
+  position:relative;
+}
+.voice__card::before{
+  content:'🍀';position:absolute;top:-8px;left:14px;font-size:.8rem;
+}
+.voice__card-text{font-size:.82rem;line-height:2;color:var(--text);font-weight:300}
+.voice__card-author{margin-top:.5rem;font-size:.68rem;color:var(--text-l)}
 
-    .hero-eyebrow {
-      font-size: 0.85rem;
-      letter-spacing: 0.2em;
-      color: var(--gold);
-      margin-bottom: 28px;
-    }
+/* ══ SHOP ══ */
+.shop{background:var(--cream);text-align:center}
+.shop__btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.85rem 2.5rem;
+  background:var(--text);color:#fff;
+  font-family:'Shippori Mincho',serif;
+  font-size:.88rem;font-weight:600;
+  letter-spacing:.12em;
+  text-decoration:none;border-radius:50px;
+  transition:background .3s,transform .3s;
+}
+.shop__btn:hover{background:var(--green);transform:translateY(-2px)}
+.shop__btn svg{width:14px;height:14px;stroke:currentColor;stroke-width:2;fill:none}
 
-    .hero-icon-wrap {
-      position: relative;
-      display: inline-block;
-      margin-bottom: 28px;
-    }
-    .hero-icon {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid rgba(220,190,255,0.4);
-      box-shadow:
-        0 0 40px rgba(160,100,255,0.4),
-        0 0 80px rgba(140,80,240,0.2),
-        inset 0 0 20px rgba(255,255,255,0.05);
-    }
-    .icon-ring {
-      position: absolute;
-      inset: -12px;
-      border-radius: 50%;
-      border: 1px solid rgba(220,180,255,0.3);
-    }
+/* ══ LINKS ══ */
+.links{background:var(--green-bg);text-align:center}
+.links__row{display:flex;flex-wrap:wrap;justify-content:center;gap:.8rem}
+.links__item{
+  display:inline-flex;align-items:center;gap:.4rem;
+  padding:.6rem 1.3rem;
+  background:var(--white);border:1px solid var(--green-xl);
+  border-radius:50px;color:var(--text);
+  text-decoration:none;font-size:.78rem;font-weight:500;
+  transition:all .3s;
+}
+.links__item:hover{background:var(--green);color:#fff;border-color:var(--green)}
+.links__item svg{width:14px;height:14px;fill:currentColor}
 
+/* ══ CLOSING ══ */
+.closing{
+  background:linear-gradient(180deg,var(--warm),rgba(210,228,196,.3),var(--green-bg));
+  text-align:center;
+  padding:4rem 1.5rem 3rem;
+}
+.closing__text{
+  font-family:'Shippori Mincho',serif;
+  font-size:clamp(.85rem,2.2vw,1rem);
+  color:var(--text);
+  line-height:2.4;
+  letter-spacing:.08em;
+  font-weight:400;
+}
 
-    .hero-name {
-      font-size: clamp(3rem, 8vw, 5rem);
-      font-weight: 300;
-      letter-spacing: 0.25em;
-      color: var(--white);
-      line-height: 1.1;
-      margin-bottom: 4px;
-      text-shadow: 0 0 30px rgba(200,170,255,0.6);
-    }
-    .hero-title {
-      font-size: 0.9rem;
-      letter-spacing: 0.25em;
-      color: var(--pink);
-      margin-bottom: 20px;
-    }
-    .hero-catch {
-      font-size: clamp(1.1rem, 3vw, 1.4rem);
-      font-weight: 300;
-      color: var(--gold-light);
-      letter-spacing: 0.12em;
-      margin-bottom: 24px;
-    }
-    .hero-desc {
-      font-size: 0.95rem;
-      color: var(--white-dim);
-      line-height: 2;
-      margin-bottom: 40px;
-      max-width: 480px;
-      margin-left: auto;
-      margin-right: auto;
-    }
+/* ══ FOOTER ══ */
+footer{
+  text-align:center;
+  padding:2rem 1.5rem 1.2rem;
+  background:var(--green-bg);
+  border-top:1px solid var(--green-xl);
+}
+footer .f-logo{
+  font-family:'Shippori Mincho',serif;
+  font-size:1rem;font-weight:600;
+  color:var(--text);letter-spacing:.2em;margin-bottom:.3rem;
+}
+footer .f-copy{font-size:.65rem;color:var(--text-l)}
 
-    /* ---------- ボタン ---------- */
-    .btn-primary {
-      display: inline-block;
-      padding: 16px 44px;
-      background: linear-gradient(135deg, #7040d0 0%, #a060e0 50%, #c080f0 100%);
-      color: white;
-      border-radius: 60px;
-      font-family: var(--font-serif);
-      font-size: 0.95rem;
-      letter-spacing: 0.1em;
-      box-shadow: 0 0 30px rgba(140,80,230,0.5), 0 4px 20px rgba(0,0,0,0.4);
-      transition: transform 0.3s, box-shadow 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 0 50px rgba(160,100,255,0.7), 0 8px 30px rgba(0,0,0,0.5);
-    }
-    .btn-secondary {
-      display: inline-block;
-      padding: 16px 44px;
-      background: transparent;
-      color: var(--gold-light);
-      border: 1px solid rgba(220,190,100,0.5);
-      border-radius: 60px;
-      font-family: var(--font-serif);
-      font-size: 0.95rem;
-      letter-spacing: 0.1em;
-      transition: background 0.3s, transform 0.3s;
-    }
-    .btn-secondary:hover {
-      background: rgba(220,190,100,0.12);
-      transform: translateY(-3px);
-    }
+/* ══ FADE ══ */
+.fade-in{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s}
+.fade-in.is-visible{opacity:1;transform:translateY(0)}
 
-    /* スクロールインジケーター */
-    .scroll-indicator {
-      position: absolute;
-      bottom: 32px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      z-index: 2;
-    }
-    .scroll-indicator span {
-      display: block;
-      width: 1px;
-      height: 50px;
-      background: linear-gradient(to bottom, transparent, rgba(220,180,255,0.6));
-    }
-    .scroll-indicator p {
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      color: var(--white-dim);
-      text-transform: uppercase;
-    }
-
-    /* ---------- セクション共通タイトル ---------- */
-    .section-title-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      margin-bottom: 16px;
-    }
-    .section-title {
-      font-size: clamp(1.4rem, 4vw, 2rem);
-      font-weight: 400;
-      letter-spacing: 0.2em;
-      color: var(--white);
-      text-shadow: 0 0 20px rgba(200,170,255,0.4);
-    }
-    .fairy-deco { font-size: 1.3rem; }
-    .section-sub {
-      text-align: center;
-      color: var(--white-dim);
-      font-size: 0.9rem;
-      margin-bottom: 60px;
-      letter-spacing: 0.05em;
-    }
-
-    /* ---------- About ---------- */
-    .about {
-      position: relative;
-      z-index: 1;
-      background: linear-gradient(180deg, var(--fairy-dark) 0%, var(--fairy-navy) 100%);
-    }
-    .about-card {
-      display: flex;
-      gap: 56px;
-      align-items: flex-start;
-      background: linear-gradient(135deg, rgba(40,30,80,0.7) 0%, rgba(20,20,50,0.8) 100%);
-      border: 1px solid rgba(200,170,255,0.15);
-      border-radius: var(--radius-lg);
-      padding: 48px;
-      margin-bottom: 60px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(120,80,200,0.1);
-      position: relative;
-      overflow: hidden;
-    }
-    .about-card::before {
-      content: '';
-      position: absolute;
-      top: -40px; right: -40px;
-      width: 200px; height: 200px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(180,120,255,0.2) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .about-img-col { flex-shrink: 0; }
-    .about-img-frame {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 2px solid rgba(220,190,255,0.3);
-      box-shadow: 0 0 30px rgba(160,100,255,0.3);
-    }
-    .about-img-frame img { width: 100%; height: 100%; object-fit: cover; }
-    .about-text-col { flex: 1; }
-    .about-name-label {
-      font-size: 0.78rem;
-      letter-spacing: 0.2em;
-      color: var(--pink);
-      margin-bottom: 4px;
-    }
-    .about-name {
-      font-size: 2rem;
-      font-weight: 300;
-      letter-spacing: 0.2em;
-      color: var(--white);
-      margin-bottom: 4px;
-    }
-    .about-catch-small {
-      font-size: 0.82rem;
-      color: var(--gold);
-      letter-spacing: 0.1em;
-      margin-bottom: 20px;
-    }
-    .about-divider {
-      width: 60px;
-      height: 1px;
-      background: linear-gradient(to right, var(--gold), transparent);
-      margin-bottom: 20px;
-    }
-    .about-body {
-      font-size: 0.93rem;
-      line-height: 2.1;
-      color: var(--white-dim);
-      margin-bottom: 24px;
-    }
-    .about-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .tag {
-      display: inline-block;
-      padding: 6px 18px;
-      border: 1px solid rgba(200,170,255,0.3);
-      border-radius: 30px;
-      font-size: 0.78rem;
-      color: var(--pink-light);
-      letter-spacing: 0.06em;
-      background: rgba(120,80,200,0.12);
-    }
-
-    /* セリフカード */
-    .quote-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-    }
-    .quote-card {
-      background: linear-gradient(135deg, rgba(50,35,90,0.6) 0%, rgba(25,20,55,0.8) 100%);
-      border: 1px solid rgba(200,170,255,0.12);
-      border-radius: var(--radius);
-      padding: 28px 24px;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .quote-card::before {
-      content: '❝';
-      position: absolute;
-      top: 12px; left: 16px;
-      font-size: 3rem;
-      color: rgba(200,170,255,0.1);
-      line-height: 1;
-      font-family: serif;
-    }
-    .quote-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 40px rgba(120,80,200,0.2);
-    }
-    .quote-text {
-      font-size: 0.87rem;
-      line-height: 2;
-      color: var(--white-dim);
-      position: relative;
-      z-index: 1;
-    }
-
-    /* ---------- 鑑定メニュー ---------- */
-    .reading {
-      position: relative;
-      z-index: 1;
-      background: linear-gradient(180deg, var(--fairy-navy) 0%, var(--fairy-mid) 100%);
-    }
-    .menu-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 32px;
-      margin-bottom: 48px;
-    }
-    .menu-card {
-      background: linear-gradient(160deg, rgba(40,30,80,0.75) 0%, rgba(18,15,45,0.9) 100%);
-      border: 1px solid rgba(200,170,255,0.15);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      transition: transform 0.4s, box-shadow 0.4s;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-    }
-    .menu-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 60px rgba(120,80,200,0.25);
-    }
-    .menu-card-img-wrap {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      overflow: hidden;
-    }
-    .menu-card-img-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s;
-    }
-    .menu-card:hover .menu-card-img-wrap img { transform: scale(1.05); }
-    .menu-badge {
-      position: absolute;
-      top: 16px; left: 16px;
-      background: linear-gradient(135deg, #7040d0, #a060e0);
-      color: white;
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      padding: 5px 14px;
-      border-radius: 20px;
-      box-shadow: 0 2px 12px rgba(100,60,200,0.5);
-    }
-    .menu-badge.pair { background: linear-gradient(135deg, #c06080, #e080a0); }
-    .menu-card-body { padding: 28px; }
-    .menu-title {
-      font-size: 1.05rem;
-      font-weight: 500;
-      color: var(--white);
-      margin-bottom: 12px;
-      line-height: 1.6;
-      letter-spacing: 0.05em;
-    }
-    .menu-title span {
-      font-size: 0.85rem;
-      color: var(--gold);
-      font-weight: 300;
-    }
-    .menu-desc {
-      font-size: 0.85rem;
-      color: var(--white-dim);
-      line-height: 1.9;
-      margin-bottom: 18px;
-    }
-    .menu-features {
-      list-style: none;
-      margin-bottom: 24px;
-    }
-    .menu-features li {
-      font-size: 0.82rem;
-      color: var(--pink-light);
-      padding: 4px 0;
-      letter-spacing: 0.05em;
-    }
-    .btn-menu {
-      display: block;
-      text-align: center;
-      padding: 14px 20px;
-      background: linear-gradient(135deg, rgba(100,60,200,0.8) 0%, rgba(140,80,220,0.9) 100%);
-      color: white;
-      border-radius: 50px;
-      font-size: 0.88rem;
-      letter-spacing: 0.1em;
-      border: 1px solid rgba(200,170,255,0.2);
-      transition: transform 0.3s, box-shadow 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
-    .btn-menu:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(120,70,220,0.45);
-    }
-    .btn-menu.pair { background: linear-gradient(135deg, rgba(180,70,100,0.8) 0%, rgba(220,100,140,0.9) 100%); }
-    .btn-menu.pair:hover { box-shadow: 0 8px 25px rgba(200,80,120,0.45); }
-    .store-link-wrap { text-align: center; }
-    .btn-store {
-      display: inline-block;
-      padding: 14px 40px;
-      border: 1px solid rgba(220,190,100,0.4);
-      color: var(--gold-light);
-      border-radius: 50px;
-      font-size: 0.88rem;
-      letter-spacing: 0.1em;
-      transition: background 0.3s, transform 0.3s;
-    }
-    .btn-store:hover {
-      background: rgba(220,190,100,0.1);
-      transform: translateY(-2px);
-    }
-
-    /* ---------- フロー ---------- */
-    .flow {
-      position: relative;
-      z-index: 1;
-      background: linear-gradient(180deg, var(--fairy-mid) 0%, var(--fairy-purple) 100%);
-    }
-    .flow-steps {
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 48px;
-    }
-    .flow-step {
-      flex: 1;
-      min-width: 160px;
-      max-width: 200px;
-      text-align: center;
-      padding: 28px 16px;
-      background: rgba(40,30,80,0.5);
-      border: 1px solid rgba(200,170,255,0.12);
-      border-radius: var(--radius);
-    }
-    .step-num {
-      font-family: var(--font-display);
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      color: var(--gold);
-      margin-bottom: 10px;
-    }
-    .step-icon { font-size: 2rem; margin-bottom: 10px; }
-    .step-title {
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--white);
-      margin-bottom: 8px;
-      letter-spacing: 0.05em;
-    }
-    .step-desc {
-      font-size: 0.78rem;
-      color: var(--white-dim);
-      line-height: 1.8;
-    }
-    .flow-arrow {
-      font-size: 1.2rem;
-      color: rgba(200,170,255,0.4);
-      align-self: center;
-      padding-top: 20px;
-    }
-    .flow-note {
-      background: rgba(30,20,60,0.5);
-      border: 1px solid rgba(200,170,255,0.1);
-      border-radius: var(--radius);
-      padding: 24px 32px;
-      text-align: center;
-    }
-    .flow-note p {
-      font-size: 0.88rem;
-      color: var(--white-dim);
-      line-height: 2;
-    }
-
-    /* ---------- オープンチャット ---------- */
-    .openchat {
-      position: relative;
-      z-index: 1;
-      background: linear-gradient(180deg, var(--fairy-purple) 0%, var(--fairy-navy) 100%);
-    }
-    .openchat-card {
-      max-width: 600px;
-      margin: 0 auto;
-      text-align: center;
-      background: linear-gradient(135deg, rgba(40,30,80,0.7) 0%, rgba(20,20,50,0.9) 100%);
-      border: 1px solid rgba(200,170,255,0.15);
-      border-radius: var(--radius-lg);
-      padding: 56px 40px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-    }
-    .openchat-icon { font-size: 3rem; margin-bottom: 16px; }
-    .openchat-title {
-      font-size: 1.2rem;
-      font-weight: 400;
-      color: var(--white);
-      margin-bottom: 20px;
-      letter-spacing: 0.1em;
-    }
-    .openchat-desc {
-      font-size: 0.9rem;
-      color: var(--white-dim);
-      line-height: 2.1;
-      margin-bottom: 24px;
-    }
-    .openchat-features {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 16px;
-      margin-bottom: 36px;
-    }
-    .openchat-features span {
-      font-size: 0.8rem;
-      color: var(--pink-light);
-      letter-spacing: 0.06em;
-    }
-    .btn-line {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 16px 40px;
-      background: #06c755;
-      color: white;
-      border-radius: 50px;
-      font-size: 0.92rem;
-      letter-spacing: 0.08em;
-      box-shadow: 0 4px 20px rgba(6,199,85,0.35);
-      transition: transform 0.3s, box-shadow 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
-    .btn-line:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 30px rgba(6,199,85,0.5);
-    }
-    .btn-line svg { margin-right: 8px; vertical-align: middle; flex-shrink: 0; }
-    .btn-line-hero {
-      padding: 16px 44px;
-      font-size: 0.95rem;
-      letter-spacing: 0.1em;
-    }
-
-    /* ---------- CTA ---------- */
-    .cta-section {
-      position: relative;
-      z-index: 1;
-      background: linear-gradient(180deg, var(--fairy-navy) 0%, var(--fairy-dark) 100%);
-    }
-    .cta-inner {
-      position: relative;
-      text-align: center;
-      padding: 80px 40px;
-      background: linear-gradient(135deg, rgba(60,40,120,0.5) 0%, rgba(20,15,50,0.7) 100%);
-      border: 1px solid rgba(200,170,255,0.15);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-    }
-    .cta-glows { position: absolute; inset: 0; pointer-events: none; }
-    .cta-glow {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.2;
-    }
-    .cg1 { width: 400px; height: 400px; background: #7040d0; top: -30%; left: -10%; }
-    .cg2 { width: 300px; height: 300px; background: #d060a0; bottom: -20%; right: 0%; }
-    .cta-eyebrow {
-      font-size: 0.82rem;
-      letter-spacing: 0.2em;
-      color: var(--gold);
-      margin-bottom: 16px;
-      position: relative;
-    }
-    .cta-title {
-      font-size: clamp(1.5rem, 4vw, 2.2rem);
-      font-weight: 300;
-      color: var(--white);
-      letter-spacing: 0.12em;
-      margin-bottom: 24px;
-      line-height: 1.6;
-      position: relative;
-      text-shadow: 0 0 30px rgba(200,170,255,0.5);
-    }
-    .cta-desc {
-      font-size: 0.9rem;
-      color: var(--white-dim);
-      line-height: 2;
-      margin-bottom: 40px;
-      position: relative;
-    }
-    .cta-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      justify-content: center;
-      position: relative;
-    }
-
-    /* ---------- フッター ---------- */
-    .site-footer {
-      background: #07070f;
-      border-top: 1px solid rgba(200,170,255,0.08);
-      padding: 60px 0 40px;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-    }
-    .footer-logo {
-      font-size: 1.1rem;
-      color: var(--gold-light);
-      letter-spacing: 0.12em;
-      margin-bottom: 8px;
-    }
-    .footer-tagline {
-      font-size: 0.78rem;
-      color: var(--white-dim);
-      letter-spacing: 0.08em;
-      margin-bottom: 24px;
-    }
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 28px;
-      flex-wrap: wrap;
-      margin-bottom: 28px;
-    }
-    .footer-links a {
-      font-size: 0.82rem;
-      color: var(--white-dim);
-      letter-spacing: 0.05em;
-      transition: color 0.3s;
-    }
-    .footer-links a:hover { color: var(--gold-light); }
-    .footer-copy {
-      font-size: 0.72rem;
-      color: rgba(255,255,255,0.25);
-      letter-spacing: 0.05em;
-    }
-
-    /* ---------- スクロールアニメーション（無効化） ---------- */
-
-    /* ---------- レスポンシブ ---------- */
-    @media (max-width: 768px) {
-      .header-nav { display: none; }
-      .about-card {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: 32px 24px;
-        gap: 28px;
-      }
-      .about-divider { margin: 0 auto 20px; }
-      .about-tags { justify-content: center; }
-      .flow-steps { flex-direction: column; align-items: center; }
-      .flow-arrow { transform: rotate(90deg); padding-top: 0; }
-      .cta-inner { padding: 60px 24px; }
-      .openchat-card { padding: 40px 24px; }
-      .menu-cards { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 480px) {
-      .hero-icon { width: 160px; height: 160px; }
-      .about-img-frame { width: 160px; height: 160px; }
-      .quote-cards { grid-template-columns: 1fr; }
-    }
-  </style>
+@media(max-width:480px){
+  section{padding:3.5rem 1.2rem}
+  .menu__grid{gap:.6rem}
+  .about__features{gap:1rem}
+  .flow__steps{gap:.2rem}
+  .flow__step{width:80px}
+  .flow__arrow{display:none}
+}
+</style>
 </head>
 <body>
 
-  <!-- ヘッダー -->
-  <header class="site-header">
-    <div class="header-inner">
-      <p class="site-logo">🧚‍♀️ Fairy bookstore</p>
-      <nav class="header-nav">
-        <a href="#about">メルについて</a>
-        <a href="#reading">鑑定メニュー</a>
-        <a href="#flow">鑑定の流れ</a>
-        <a href="#openchat">ミニ鑑定</a>
-      </nav>
-    </div>
-  </header>
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero__bg"></div>
+  <div class="hero__content">
+    <h1 class="hero__title">つむぎ</h1>
+    <p class="hero__sub">四柱推命鑑定士</p>
+    <p class="hero__tagline">
+      あなたの人生の糸をひもとき<br>
+      未来の道しるべをつむぎます
+    </p>
+    <div class="hero__scroll"></div>
+  </div>
+</section>
+<div class="gold-border"></div>
 
-  <!-- ヒーローセクション -->
-  <section class="hero" id="hero">
-    <div class="hero-glows">
-      <span class="glow g1"></span>
-      <span class="glow g2"></span>
-      <span class="glow g3"></span>
-    </div>
+<!-- ══ TOP CTA ══ -->
+<section class="top-cta" style="padding:0 1.5rem;margin-top:-1.5rem">
+  <a href="https://line.me/ti/g2/5LyKy5IM0KZ1jrKf-4YYc_iGr8RSKskbo1zsmA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener" class="top-cta__link">
+    <span class="top-cta__pulse"></span>
+    <span class="top-cta__icon">
+      <svg viewBox="0 0 24 24" width="18" height="18"><path fill="#fff" d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+    </span>
+    <span class="top-cta__body">
+      <span class="top-cta__label">🍀 無料ミニ鑑定やってます</span>
+      <span class="top-cta__sub">オープンチャット「つむぎ」で受付中 →</span>
+    </span>
+  </a>
+</section>
 
-    <div class="hero-content">
-      <p class="hero-eyebrow">🌙 フェアリー・ティアラの付き人</p>
-      <div class="hero-icon-wrap">
-        <img src="icon.png" alt="フェアリーメッセンジャー メル" class="hero-icon" />
-        <span class="icon-ring"></span>
+<!-- ══ ABOUT ══ -->
+<section class="about" id="about">
+  <div class="section-inner fade-in">
+    <div class="deco-div">
+      <span><span class="sparkle">✦</span> つむぎの四柱推命鑑定とは <span class="sparkle">✦</span></span>
+    </div>
+    <p class="about__text">
+      生年月日と生まれた時間から導き出される<br>
+      四柱推命をもとに、あなたの人生の流れや<br>
+      性格・才能・ご縁のタイミングを読み解きます。<br>
+      今の悩みや迷いに、心がふっと軽くなるような<br>
+      "未来の道しるべ"をお届けします。
+    </p>
+    <div class="about__features">
+      <div class="about__feat">
+        <div class="about__feat-circle">♡</div>
+        <p class="about__feat-text">心に寄り添う<br>丁寧な鑑定</p>
       </div>
-      <h1 class="hero-name">メル</h1>
-      <p class="hero-title">フェアリーメッセンジャー</p>
-      <p class="hero-catch">妖精の言葉を、あなたへ届ける。</p>
-      <p class="hero-desc">
-        ティアラが光の本を開くとき、<br />
-        あなたへのメッセージが浮かび上がります。<br />
-        妖精のお告げを、やさしくお届けします🌙
+      <div class="about__feat">
+        <div class="about__feat-circle">☆</div>
+        <p class="about__feat-text">具体的で<br>わかりやすい<br>アドバイス</p>
+      </div>
+      <div class="about__feat">
+        <div class="about__feat-circle">🌿</div>
+        <p class="about__feat-text">未来を明るく<br>照らす鑑定</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STATS ══ -->
+<section class="stats">
+  <div class="section-inner fade-in">
+    <div class="stats__row">
+      <div class="stats__item">
+        <span class="stats__num">15</span>
+        <span class="stats__unit">年</span>
+        <span class="stats__label">対面鑑定歴</span>
+      </div>
+      <div class="stats__item">
+        <span class="stats__num">7,000</span>
+        <span class="stats__unit">人以上</span>
+        <span class="stats__label">鑑定人数</span>
+      </div>
+      <div class="stats__item">
+        <span class="stats__num">紹介制</span>
+        <span class="stats__label">対面は紹介のみ</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ MENU ══ -->
+<section class="menu" id="menu">
+  <div class="section-inner fade-in">
+    <div class="deco-div">
+      <span><span class="sparkle">✦</span> 鑑定メニュー <span class="sparkle">✦</span></span>
+    </div>
+    <div class="menu__grid">
+      <a href="https://tumugi.stores.jp/items/6956624fa6f4f8c27cb809bd" target="_blank" rel="noopener" class="menu__card">
+        <img class="menu__card-img" src="assets/profile.jpg" alt="個人鑑定"
+          onerror="this.style.background='linear-gradient(135deg,#d2e4c4,#f0e8d4)';this.style.minHeight='120px'">
+        <div class="menu__card-body">
+          <h3 class="menu__card-name">個人鑑定</h3>
+          <p class="menu__card-desc">あなたの本質や運気の流れを<br>じっくり鑑定します。</p>
+        </div>
+      </a>
+      <a href="https://tumugi.stores.jp/items/69e2591c758861d76c9a6b05" target="_blank" rel="noopener" class="menu__card">
+        <img class="menu__card-img" src="assets/profile.jpg" alt="ペア鑑定"
+          onerror="this.style.background='linear-gradient(135deg,#f0e8d4,#d2e4c4)';this.style.minHeight='120px'">
+        <div class="menu__card-body">
+          <h3 class="menu__card-name">ペア鑑定</h3>
+          <p class="menu__card-desc">お二人の相性や関係性を<br>詳しく鑑定します。</p>
+        </div>
+      </a>
+      <a href="https://tumugi.stores.jp/items/6a70b97fa1be0e96213f686e" target="_blank" rel="noopener" class="menu__card">
+        <img class="menu__card-img" src="assets/profile.jpg" alt="過去鑑定"
+          onerror="this.style.background='linear-gradient(135deg,#d2e4c4,#e2d1a0)';this.style.minHeight='120px'">
+        <div class="menu__card-body">
+          <h3 class="menu__card-name">過去鑑定</h3>
+          <p class="menu__card-desc">過去の選択や分岐点を<br>命式から読み解きます。</p>
+        </div>
+      </a>
+      <a href="https://tumugi.stores.jp/items/69e2564a7656e2c3b542abdb" target="_blank" rel="noopener" class="menu__card">
+        <img class="menu__card-img" src="assets/profile.jpg" alt="深堀鑑定"
+          onerror="this.style.background='linear-gradient(135deg,#e2d1a0,#d2e4c4)';this.style.minHeight='120px'">
+        <div class="menu__card-body">
+          <h3 class="menu__card-name">深堀鑑定</h3>
+          <p class="menu__card-desc">より深く、細部まで<br>鑑定したい方に。</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ OPENCHAT ══ -->
+<section class="openchat" id="openchat">
+  <div class="section-inner fade-in">
+    <div class="deco-div">
+      <span><span class="sparkle">✦</span> 無料ミニ鑑定 &amp; オープンチャット <span class="sparkle">✦</span></span>
+    </div>
+    <div class="openchat__box">
+      <p class="openchat__desc">
+        LINEのオープンチャットで<br>
+        無料ミニ鑑定を行っています。<br>
+        参加者限定の情報や、限定企画も<br>
+        お届けしています。
       </p>
-      <a href="#reading" class="btn-primary">✦ 鑑定メニューを見る ✦</a>
-      <div style="margin-top:20px;">
-        <a href="https://line.me/ti/g2/ILDaefBoVOxRA_9WU_tGyaP3soHCIV661EO32Q?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener" class="btn-line btn-line-hero">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48" fill="white">
-            <path d="M24 4C12.95 4 4 11.9 4 21.5c0 5.9 3.4 11.1 8.6 14.4-.4 1.4-1.4 5.1-1.6 5.9-.2.9.3 1 .9.6.5-.3 6.3-4.3 8.9-6 1 .1 2.1.2 3.2.2 11.05 0 20-7.9 20-17.5S35.05 4 24 4z"/>
-          </svg>
-          ミニ鑑定のお部屋へ
-        </a>
+      <div class="openchat__feats">
+        <div class="openchat__feat">
+          <div class="openchat__feat-circle">🔮</div>
+          <p class="openchat__feat-text">無料ミニ鑑定<br>受付中</p>
+        </div>
+        <div class="openchat__feat">
+          <div class="openchat__feat-circle">🍀</div>
+          <p class="openchat__feat-text">鑑定のヒントや<br>運気の流れを<br>お届け</p>
+        </div>
+        <div class="openchat__feat">
+          <div class="openchat__feat-circle">💬</div>
+          <p class="openchat__feat-text">悩み相談・交流<br>もできる<br>コミュニティ</p>
+        </div>
+      </div>
+      <a href="https://line.me/ti/g2/5LyKy5IM0KZ1jrKf-4YYc_iGr8RSKskbo1zsmA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener" class="openchat__btn">
+        <svg viewBox="0 0 24 24"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+        オープンチャットに参加する（無料）
+      </a>
+      <p class="openchat__note">※ LINEアカウントがあれば匿名で参加できます</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FLOW ══ -->
+<section class="flow" id="flow">
+  <div class="section-inner fade-in">
+    <div class="deco-div">
+      <span><span class="sparkle">✦</span> お申込み後の流れ <span class="sparkle">✦</span></span>
+    </div>
+    <div class="flow__steps">
+      <div class="flow__step">
+        <p class="flow__step-num">STEP 1</p>
+        <div class="flow__step-circle">✉️</div>
+        <p class="flow__step-title">お申込み</p>
+        <p class="flow__step-desc">ご希望のメニューを<br>お選びください。</p>
+      </div>
+      <div class="flow__arrow">→</div>
+      <div class="flow__step">
+        <p class="flow__step-num">STEP 2</p>
+        <div class="flow__step-circle">📋</div>
+        <p class="flow__step-title">ご案内</p>
+        <p class="flow__step-desc">詳細なご案内と<br>必要事項をお送りします。</p>
+      </div>
+      <div class="flow__arrow">→</div>
+      <div class="flow__step">
+        <p class="flow__step-num">STEP 3</p>
+        <div class="flow__step-circle">🔮</div>
+        <p class="flow__step-title">鑑定実施</p>
+        <p class="flow__step-desc">命式をもとに<br>丁寧に鑑定いたします。</p>
+      </div>
+      <div class="flow__arrow">→</div>
+      <div class="flow__step">
+        <p class="flow__step-num">STEP 4</p>
+        <div class="flow__step-circle">📖</div>
+        <p class="flow__step-title">結果のお届け</p>
+        <p class="flow__step-desc">鑑定結果をわかりやすく<br>お届けします。</p>
+      </div>
+      <div class="flow__arrow">→</div>
+      <div class="flow__step">
+        <p class="flow__step-num">STEP 5</p>
+        <div class="flow__step-circle">💚</div>
+        <p class="flow__step-title">アフターフォロー</p>
+        <p class="flow__step-desc">追加相談チケットで<br>サポートも可能です。</p>
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="scroll-indicator">
-      <span></span>
-      <p>scroll</p>
+<!-- ══ VOICE ══ -->
+<section class="voice" id="voice">
+  <div class="section-inner fade-in">
+    <div class="deco-div">
+      <span><span class="sparkle">✦</span> お客さまの声 <span class="sparkle">✦</span></span>
     </div>
-  </section>
-
-  <!-- メルについて -->
-  <section class="about section-pad" id="about">
-    <div class="container">
-      <div class="section-title-wrap">
-        <span class="fairy-deco">🧚‍♀️</span>
-        <h2 class="section-title">メルについて</h2>
-        <span class="fairy-deco">🧚‍♀️</span>
+    <div class="voice__list">
+      <div class="voice__card">
+        <p class="voice__card-text">「自分の命式を知ることで、これまでの人生の流れに納得できました。強みも弱みも、全部自分なんだと受け入れられた気がします。」</p>
+        <p class="voice__card-author">— A.M さま（20代・自己理解）</p>
       </div>
-
-      <div class="about-card">
-        <div class="about-img-col">
-          <div class="about-img-frame">
-            <img src="icon.png" alt="メル" />
-          </div>
-        </div>
-        <div class="about-text-col">
-          <p class="about-name-label">🌙 フェアリーメッセンジャー</p>
-          <h3 class="about-name">メル</h3>
-          <p class="about-catch-small">フェアリー・ティアラの付き人</p>
-          <div class="about-divider"></div>
-          <p class="about-body">
-            はじめまして、メルです🧚‍♀️<br /><br />
-            わたしには、フェアリーの世界が視えます。<br />
-            ティアラという小さな妖精が、いつもそばにいて、<br />
-            あなたのページを開いて、そっとメッセージを教えてくれるのです📖<br /><br />
-            ティアラの声は、とても小さくて、とても正直です。<br />
-            その言葉を、わたしがやさしくあなたへお届けします🪄<br /><br />
-            鑑定は文字だけのやり取りです。<br />
-            でも、ティアラはちゃんとあなたのそばまで飛んでいきます。<br />
-            大丈夫ですよ。きっとうまくいきます🌙
-          </p>
-          <div class="about-tags">
-            <span class="tag">🧚‍♀️ 妖精の声が聞こえる</span>
-            <span class="tag">📖 魔法の本のお告げ</span>
-            <span class="tag">🌙 ティアラのメッセージ</span>
-          </div>
-        </div>
+      <div class="voice__card">
+        <p class="voice__card-text">「つむぎさんの鑑定は温かくて丁寧。運勢の波を教えてもらえたことで、焦らず自分のタイミングを待てるようになりました。」</p>
+        <p class="voice__card-author">— S.K さま（30代・お仕事相談）</p>
       </div>
-
-
-    </div>
-  </section>
-
-  <!-- 鑑定メニュー -->
-  <section class="reading section-pad" id="reading">
-    <div class="container">
-      <div class="section-title-wrap">
-        <span class="fairy-deco">📖</span>
-        <h2 class="section-title">鑑定メニュー</h2>
-        <span class="fairy-deco">📖</span>
-      </div>
-      <p class="section-sub">ティアラが光を灯した、あなただけの一冊を開きます。</p>
-
-      <div class="menu-cards">
-        <!-- 本人鑑定 -->
-        <article class="menu-card">
-          <div class="menu-card-img-wrap">
-            <img src="reading-thumb.png" alt="ティアラの魔法の本 本人鑑定" />
-            <span class="menu-badge">本人鑑定</span>
-          </div>
-          <div class="menu-card-body">
-            <h3 class="menu-title">🧚‍♀️ ティアラの魔法の本<br /><span>〜あなたへのお告げ〜</span></h3>
-            <p class="menu-desc">
-              ティアラがあなたのページを開いて、今のあなたに必要なメッセージを届けてくれます🌙<br />
-              鑑定はご購入後、公式LINEにてお届けします📖
-            </p>
-            <ul class="menu-features">
-              <li>✦ 今のあなたへのメッセージ</li>
-              <li>✦ ティアラが視たあなたの流れ</li>
-              <li>✦ ティアラからのアドバイス</li>
-            </ul>
-            <a href="https://fairy-book.stores.jp/items/6956624fa6f4f8c27cb809bd" target="_blank" rel="noopener" class="btn-menu">
-              🪄 ご購入はこちら
-            </a>
-          </div>
-        </article>
-
-        <!-- ペア鑑定 -->
-        <article class="menu-card">
-          <div class="menu-card-img-wrap">
-            <img src="pair-thumb.png" alt="ティアラの魔法の本 ペア鑑定" />
-            <span class="menu-badge pair">ペア鑑定</span>
-          </div>
-          <div class="menu-card-body">
-            <h3 class="menu-title">🧚‍♀️ ティアラの魔法の本<br /><span>〜ふたりへのお告げ〜</span></h3>
-            <p class="menu-desc">
-              ふたりの本をティアラが並べて開いてくれます✨<br />
-              大切な人との関係性や相性について、やさしくお届けします🌙
-            </p>
-            <ul class="menu-features">
-              <li>✦ ふたりの相性・繋がり</li>
-              <li>✦ ティアラが視たふたりの流れ</li>
-              <li>✦ ティアラからのふたりへのメッセージ</li>
-            </ul>
-            <a href="https://fairy-book.stores.jp/items/69e2591c758861d76c9a6b05" target="_blank" rel="noopener" class="btn-menu pair">
-              🪄 ご購入はこちら
-            </a>
-          </div>
-        </article>
-      </div>
-
-      <div class="store-link-wrap">
-        <a href="https://fairy-book.stores.jp/" target="_blank" rel="noopener" class="btn-store">
-          📖 Fairy bookstore をみる
-        </a>
+      <div class="voice__card">
+        <p class="voice__card-text">「ペア鑑定で彼との相性を見ていただきました。お互いの特性がわかって、コミュニケーションがすごく楽になりました！」</p>
+        <p class="voice__card-author">— Y.T さま（20代・恋愛相談）</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- 鑑定の流れ -->
-  <section class="flow section-pad" id="flow">
-    <div class="container">
-      <div class="section-title-wrap">
-        <span class="fairy-deco">🪄</span>
-        <h2 class="section-title">鑑定の流れ</h2>
-        <span class="fairy-deco">🪄</span>
-      </div>
-      <p class="section-sub">ティアラが本を開くまでの、ほんのわずかなステップです🌙</p>
-
-      <div class="flow-steps">
-        <div class="flow-step">
-          <div class="step-num">01</div>
-          <div class="step-icon">🛒</div>
-          <h4 class="step-title">ご購入</h4>
-          <p class="step-desc">Fairy bookstoreにてご希望の鑑定メニューをご購入ください。</p>
-        </div>
-        <div class="flow-arrow">✦</div>
-        <div class="flow-step">
-          <div class="step-num">02</div>
-          <div class="step-icon">📱</div>
-          <h4 class="step-title">公式LINEへご連絡</h4>
-          <p class="step-desc">ご購入後、公式LINEよりお問い合わせください。必要な情報をお伝えします。</p>
-        </div>
-        <div class="flow-arrow">✦</div>
-        <div class="flow-step">
-          <div class="step-num">03</div>
-          <div class="step-icon">🧚‍♀️</div>
-          <h4 class="step-title">ティアラが動く</h4>
-          <p class="step-desc">ティアラがあなたのページを開き、メッセージを受け取ります。</p>
-        </div>
-        <div class="flow-arrow">✦</div>
-        <div class="flow-step">
-          <div class="step-num">04</div>
-          <div class="step-icon">📖</div>
-          <h4 class="step-title">鑑定結果のお届け</h4>
-          <p class="step-desc">公式LINEにて、文字でお届けします。ゆっくり読んでいただけると嬉しいです🌙</p>
-        </div>
-      </div>
-
-      <div class="flow-note">
-        <p>🪄 鑑定はすべて<strong>公式LINEでの文字でのやり取り</strong>になります。</p>
-        <p>🌙 ティアラのお告げを丁寧にお届けしますので、お時間をいただく場合がございます。</p>
-      </div>
+<!-- ══ SHOP ══ -->
+<section class="shop" id="shop">
+  <div class="section-inner fade-in">
+    <div class="deco-div">
+      <span><span class="sparkle">✦</span> オンラインショップ <span class="sparkle">✦</span></span>
     </div>
-  </section>
+    <a href="https://tumugi.stores.jp/" target="_blank" rel="noopener" class="shop__btn">
+      ショップを見る
+      <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+    </a>
+  </div>
+</section>
 
-  <!-- オープンチャット -->
-  <section class="openchat section-pad" id="openchat">
-    <div class="container">
-      <div class="section-title-wrap">
-        <span class="fairy-deco">🌙</span>
-        <h2 class="section-title">ミニ鑑定のお部屋</h2>
-        <span class="fairy-deco">🌙</span>
-      </div>
-
-      <div class="openchat-card">
-        <div class="openchat-icon">🧚‍♀️</div>
-        <h3 class="openchat-title">Fairy tiara ミニ鑑定のお部屋</h3>
-        <p class="openchat-desc">
-          LINEオープンチャットでは、ミニ鑑定や新規募集のお知らせをしています🌙<br />
-          ティアラのメッセージをちょっとだけ覗いてみたい方、<br />
-          まずはこちらからお気軽にどうぞ🧚‍♀️
-        </p>
-        <div class="openchat-features">
-          <span>✦ ミニ鑑定あり</span>
-          <span>✦ 新規募集のお知らせ</span>
-          <span>✦ 参加無料</span>
-        </div>
-        <a href="https://line.me/ti/g2/ILDaefBoVOxRA_9WU_tGyaP3soHCIV661EO32Q?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener" class="btn-line">
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 48 48" fill="white">
-            <path d="M24 4C12.95 4 4 11.9 4 21.5c0 5.9 3.4 11.1 8.6 14.4-.4 1.4-1.4 5.1-1.6 5.9-.2.9.3 1 .9.6.5-.3 6.3-4.3 8.9-6 1 .1 2.1.2 3.2.2 11.05 0 20-7.9 20-17.5S35.05 4 24 4z"/>
-          </svg>
-          オープンチャットに参加する
-        </a>
-      </div>
+<!-- ══ LINKS ══ -->
+<section class="links" id="links">
+  <div class="section-inner fade-in">
+    <div class="deco-div">
+      <span><span class="sparkle">✦</span> つながる <span class="sparkle">✦</span></span>
     </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta-section section-pad">
-    <div class="container">
-      <div class="cta-inner">
-        <div class="cta-glows">
-          <span class="cta-glow cg1"></span>
-          <span class="cta-glow cg2"></span>
-        </div>
-        <p class="cta-eyebrow">🌙 ティアラが、あなたを待っています。</p>
-        <h2 class="cta-title">あなたのページを、<br />開いてみませんか？</h2>
-        <p class="cta-desc">
-          「ティアラの本に、あなたへのメッセージが浮かび上がりました📖<br />
-          少しだけ、一歩踏み出してみてくださいね🪄」
-        </p>
-        <div class="cta-buttons">
-          <a href="https://fairy-book.stores.jp/items/6956624fa6f4f8c27cb809bd" target="_blank" rel="noopener" class="btn-primary">🧚‍♀️ 本人鑑定を申し込む</a>
-          <a href="https://fairy-book.stores.jp/items/69e2591c758861d76c9a6b05" target="_blank" rel="noopener" class="btn-secondary">🌙 ペア鑑定を申し込む</a>
-        </div>
-      </div>
+    <div class="links__row">
+      <a href="https://www.threads.com/@tumugi_fpd" target="_blank" rel="noopener" class="links__item">
+        <svg viewBox="0 0 24 24"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.59 12c.025 3.086.718 5.496 2.057 7.164 1.432 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.27 3.238-.937 1.147-2.272 1.752-3.969 1.799-1.297-.027-2.397-.392-3.187-1.062-.86-.73-1.326-1.745-1.326-2.848 0-1.8 1.32-3.342 3.402-3.727 1.085-.2 2.17-.134 3.158.155-.043-1.134-.3-1.99-.814-2.548-.582-.632-1.45-.95-2.58-.95l-.065.002c-1.566.043-2.593.756-3.06 1.205l-1.39-1.52c.78-.716 2.25-1.69 4.47-1.752l.09-.001c1.712 0 3.084.549 3.961 1.498.788.853 1.23 2.04 1.329 3.529.476.222.912.487 1.3.798 1.286 1.03 2.072 2.477 2.34 4.087.355 2.133-.07 4.378-1.555 5.831C18.473 23.027 16.085 23.98 12.186 24z"/></svg>
+        @tumugi_fpd
+      </a>
+      <a href="https://line.me/ti/g2/5LyKy5IM0KZ1jrKf-4YYc_iGr8RSKskbo1zsmA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener" class="links__item" style="border-color:#06C755;color:#06C755">
+        <svg viewBox="0 0 24 24"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+        LINE オプチャ
+      </a>
+      <a href="https://tumugi.stores.jp/" target="_blank" rel="noopener" class="links__item">
+        <svg viewBox="0 0 24 24"><path d="M3 3h18v18H3V3zm16 16V5H5v14h14zM7 7h4v4H7V7zm6 0h4v2h-4V7zm0 4h4v2h-4v-2zm-6 4h10v2H7v-2z"/></svg>
+        STORES
+      </a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- フッター -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-logo">🧚‍♀️ Fairy bookstore</div>
-      <p class="footer-tagline">フェアリーメッセンジャー メル ｜ フェアリー・ティアラの付き人</p>
-      <div class="footer-links">
-        <a href="https://fairy-book.stores.jp/" target="_blank" rel="noopener">📖 Fairy bookstore</a>
-        <a href="https://line.me/ti/g2/ILDaefBoVOxRA_9WU_tGyaP3soHCIV661EO32Q?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener">🌙 オープンチャット</a>
-      </div>
-      <p class="footer-copy">© 2025 Fairy bookstore / メル All rights reserved.</p>
-    </div>
-  </footer>
+<!-- ══ CLOSING ══ -->
+<section class="closing">
+  <div class="section-inner fade-in">
+    <p class="closing__text">
+      あなたの人生が、<br>
+      糸のように優しく、しなやかにつながっていきますように。<br><br>
+      つむぎが、心を込めて鑑定いたします。
+    </p>
+    <p style="margin-top:1.5rem;font-size:1.5rem">🍀</p>
+  </div>
+</section>
 
-  <script>
-    /* ---------- ヘッダー スクロール変化 ---------- */
-    function initHeader() {
-      var header = document.querySelector('.site-header');
-      if (!header) return;
-      window.addEventListener('scroll', function() {
-        header.style.background = window.scrollY > 50
-          ? 'rgba(8,8,20,0.92)'
-          : 'rgba(10,10,26,0.75)';
-      }, { passive: true });
-    }
+<!-- ══ FOOTER ══ -->
+<footer>
+  <p class="f-logo">🍀 つむぎ</p>
+  <p class="f-copy">&copy; 2024 tsumugi. All rights reserved.</p>
+</footer>
 
-    /* ---------- スムーズスクロール ---------- */
-    function initSmoothScroll() {
-      document.querySelectorAll('a[href^="#"]').forEach(function(link) {
-        link.addEventListener('click', function(e) {
-          var target = document.querySelector(link.getAttribute('href'));
-          if (!target) return;
-          e.preventDefault();
-          var top = target.getBoundingClientRect().top + window.scrollY - 70;
-          window.scrollTo({ top: top, behavior: 'smooth' });
-        });
-      });
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-      initHeader();
-      initSmoothScroll();
-    });
-  </script>
+<script>
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');obs.unobserve(e.target)}});
+},{threshold:.12});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+</script>
 </body>
 </html>
