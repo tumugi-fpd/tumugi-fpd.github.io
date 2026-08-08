@@ -432,6 +432,32 @@ footer .f-copy{font-size:.65rem;color:var(--text-l)}
   .flow__step{width:80px}
   .flow__arrow{display:none}
 }
+
+/* === Mini Kantei Choice === */
+.mini-choice{padding:0;margin-top:-1rem}
+.mini-choice-note{text-align:center;margin-bottom:1.2rem}
+.mini-choice-note-inner{display:inline-flex;align-items:center;gap:.4rem;background:var(--white);border:1.5px solid var(--gold);border-radius:100px;padding:.35rem 1rem;font-size:.72rem;font-weight:700;color:var(--text)}
+.mini-choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.mc-card{background:var(--white);border-radius:14px;padding:1.5rem 1.2rem;box-shadow:0 2px 16px rgba(62,58,48,.06);display:flex;flex-direction:column;text-align:center;position:relative;overflow:hidden}
+.mc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.mc-card-opchat::before{background:linear-gradient(90deg,#06C755,#2ab556)}
+.mc-card-form::before{background:linear-gradient(90deg,var(--gold),var(--gold-l))}
+.mc-card-icon{font-size:1.8rem;margin-bottom:.5rem}
+.mc-card-title{font-family:'Shippori Mincho',serif;font-size:.88rem;font-weight:600;margin-bottom:.3rem}
+.mc-card-tag{display:inline-block;font-size:.58rem;font-weight:700;padding:.15rem .5rem;border-radius:100px;margin-bottom:.6rem}
+.mc-tag-popular{background:rgba(6,199,85,.1);color:#06C755}
+.mc-tag-new{background:rgba(201,168,76,.12);color:var(--gold)}
+.mc-card-desc{font-size:.7rem;color:var(--text-l);line-height:1.8;margin-bottom:.8rem;flex-grow:1}
+.mc-card-points{list-style:none;text-align:left;margin-bottom:1rem}
+.mc-card-points li{font-size:.65rem;color:var(--text-l);padding:2px 0;display:flex;align-items:flex-start;gap:4px}
+.mc-btn{display:block;text-align:center;padding:.55rem 1rem;border-radius:30px;font-family:inherit;font-size:.72rem;font-weight:700;text-decoration:none;color:#fff;transition:transform .15s}
+.mc-btn:hover{transform:translateY(-1px)}
+.mc-btn-line{background:#06C755;box-shadow:0 2px 10px rgba(6,199,85,.25)}
+.mc-btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-l));box-shadow:0 2px 10px rgba(201,168,76,.25)}
+.mini-choice-footer{text-align:center;margin-top:.8rem}
+.mini-choice-footer p{font-size:.62rem;color:var(--text-l)}
+@media(max-width:480px){.mini-choice-grid{grid-template-columns:1fr}.mc-card{padding:1.2rem 1rem}}
+
 </style>
 </head>
 <body>
@@ -453,14 +479,14 @@ footer .f-copy{font-size:.65rem;color:var(--text-l)}
 
 <!-- ══ TOP CTA ══ -->
 <section class="top-cta" style="padding:0 1.5rem;margin-top:-1.5rem">
-  <a href="https://line.me/ti/g2/5LyKy5IM0KZ1jrKf-4YYc_iGr8RSKskbo1zsmA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener" class="top-cta__link">
+  <a href="#openchat" class="top-cta__link">
     <span class="top-cta__pulse"></span>
     <span class="top-cta__icon">
       <svg viewBox="0 0 24 24" width="18" height="18"><path fill="#fff" d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
     </span>
     <span class="top-cta__body">
       <span class="top-cta__label">🍀 無料ミニ鑑定やってます</span>
-      <span class="top-cta__sub">オープンチャット「つむぎ」で受付中 →</span>
+      <span class="top-cta__sub">オプチャ or メールで受付中 →</span>
     </span>
   </a>
 </section>
@@ -564,35 +590,44 @@ footer .f-copy{font-size:.65rem;color:var(--text-l)}
 <section class="openchat" id="openchat">
   <div class="section-inner fade-in">
     <div class="deco-div">
-      <span><span class="sparkle">✦</span> 無料ミニ鑑定 &amp; オープンチャット <span class="sparkle">✦</span></span>
+      <span><span class="sparkle">✦</span> 無料ミニ鑑定 <span class="sparkle">✦</span></span>
     </div>
-    <div class="openchat__box">
-      <p class="openchat__desc">
-        LINEのオープンチャットで<br>
-        無料ミニ鑑定を行っています。<br>
-        参加者限定の情報や、限定企画も<br>
-        お届けしています。
-      </p>
-      <div class="openchat__feats">
-        <div class="openchat__feat">
-          <div class="openchat__feat-circle">🔮</div>
-          <p class="openchat__feat-text">無料ミニ鑑定<br>受付中</p>
+
+    <div class="mini-choice">
+      <div class="mini-choice-note">
+        <div class="mini-choice-note-inner">👉 どちらかひとつ選んでね</div>
+      </div>
+      <div class="mini-choice-grid">
+        <div class="mc-card mc-card-opchat">
+          <div class="mc-card-icon">💬</div>
+          <h3 class="mc-card-title">オプチャで受け取る</h3>
+          <span class="mc-card-tag mc-tag-popular">👑 みんなが選んでる</span>
+          <p class="mc-card-desc">オープンチャットに参加して、<br>ミニ鑑定を受け取れるよ。<br>運気の流れや募集のお知らせも届くよ。</p>
+          <ul class="mc-card-points">
+            <li>✅ 募集開始のお知らせが最速で届く</li>
+            <li>✅ 運気の流れや鑑定のヒントも届く</li>
+            <li>✅ つむぎと気軽に交流できる</li>
+          </ul>
+          <a href="https://line.me/ti/g2/5LyKy5IM0KZ1jrKf-4YYc_iGr8RSKskbo1zsmA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener" class="mc-btn mc-btn-line">🟢 オプチャに参加する</a>
         </div>
-        <div class="openchat__feat">
-          <div class="openchat__feat-circle">🍀</div>
-          <p class="openchat__feat-text">鑑定のヒントや<br>運気の流れを<br>お届け</p>
-        </div>
-        <div class="openchat__feat">
-          <div class="openchat__feat-circle">💬</div>
-          <p class="openchat__feat-text">悩み相談・交流<br>もできる<br>コミュニティ</p>
+        <div class="mc-card mc-card-form">
+          <div class="mc-card-icon">✉️</div>
+          <h3 class="mc-card-title">メールで受け取る</h3>
+          <span class="mc-card-tag mc-tag-new">✨ NEW</span>
+          <p class="mc-card-desc">オプチャはちょっと不安…という方も大丈夫。<br>フォームから申し込んでくれたら、<br>メールで直接届けるよ。</p>
+          <ul class="mc-card-points">
+            <li>✅ オプチャに参加しなくてOK</li>
+            <li>✅ メールアドレスに直接届く</li>
+            <li>✅ 人目を気にせず相談できる</li>
+          </ul>
+          <a href="form.html" class="mc-btn mc-btn-gold">📩 フォームで申し込む</a>
         </div>
       </div>
-      <a href="https://line.me/ti/g2/5LyKy5IM0KZ1jrKf-4YYc_iGr8RSKskbo1zsmA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener" class="openchat__btn">
-        <svg viewBox="0 0 24 24"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
-        オープンチャットに参加する（無料）
-      </a>
-      <p class="openchat__note">※ LINEアカウントがあれば匿名で参加できます</p>
+      <div class="mini-choice-footer">
+        <p>ミニ鑑定は無料です。おひとり様どちらか1回限りだよ 🍀</p>
+      </div>
     </div>
+
   </div>
 </section>
 
