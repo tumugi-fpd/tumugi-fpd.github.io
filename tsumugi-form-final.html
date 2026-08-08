@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="つむぎの無料ミニ鑑定。オープンチャットが苦手な方も、こちらからお申し込みいただけます。">
+<title>無料ミニ鑑定｜つむぎ 四柱推命鑑定士</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400;500;700&family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --gold:#c9a84c;
+  --gold-l:#e2d1a0;
+  --gold-xl:#f0e8d4;
+  --green:#5a8a3c;
+  --green-l:#8db573;
+  --green-xl:#d2e4c4;
+  --green-bg:#eef4e8;
+  --cream:#faf8f2;
+  --warm:#f5f0e5;
+  --white:#fff;
+  --text:#3e3a30;
+  --text-l:#7a7568;
+  --badge:#5a8a3c;
+  --radius:14px;
+  --radius-sm:10px;
+  --shadow:0 4px 24px rgba(62,58,48,.08);
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Zen Maru Gothic',sans-serif;
+  background:var(--cream);
+  color:var(--text);
+  line-height:1.8;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+.header{text-align:center;padding:2rem 1rem 1rem;background:var(--cream)}
+.header-icon{width:56px;height:56px;border-radius:50%;object-fit:cover;margin-bottom:.4rem;border:2px solid var(--gold-l)}
+.header-name{font-family:'Shippori Mincho',serif;font-size:.85rem;font-weight:500;color:var(--text-l);letter-spacing:.12em}
+
+.hero{text-align:center;padding:1.2rem 1.5rem 1.5rem}
+.hero-emoji{font-size:1.6rem;margin-bottom:.3rem}
+.hero h1{font-family:'Shippori Mincho',serif;font-size:1.2rem;font-weight:600;line-height:1.6;margin-bottom:.6rem;letter-spacing:.06em}
+.hero p{font-size:.82rem;color:var(--text-l);max-width:400px;margin:0 auto;line-height:1.9}
+
+.intro-card{
+  background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);
+  margin:0 1.2rem 1.5rem;padding:1.3rem;position:relative;overflow:hidden;
+  max-width:520px;margin-left:auto;margin-right:auto;
+}
+.intro-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--green),var(--gold))}
+.intro-card h2{font-size:.9rem;font-weight:700;margin-bottom:.5rem}
+.intro-card p{font-size:.8rem;color:var(--text-l);line-height:1.9}
+.intro-note{margin-top:.7rem;padding:.6rem .8rem;background:var(--green-bg);border-radius:8px;font-size:.76rem;line-height:1.8}
+
+.form-wrap{max-width:520px;margin:0 auto 1.5rem;padding:0 1.2rem}
+.form-card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.5rem 1.3rem 1.8rem}
+.field{margin-bottom:1.4rem}
+.field:last-of-type{margin-bottom:0}
+.field-label{font-size:.88rem;font-weight:700;margin-bottom:.15rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
+.badge{display:inline-block;background:var(--badge);color:#fff;font-size:.63rem;font-weight:700;padding:.12rem .45rem;border-radius:20px;line-height:1.3}
+.field-hint{font-size:.73rem;color:var(--text-l);margin-bottom:.5rem}
+.text-input,.textarea-input{
+  width:100%;font-family:inherit;font-size:.86rem;color:var(--text);
+  background:var(--cream);border:1.5px solid var(--gold-l);border-radius:var(--radius-sm);
+  padding:.65rem .85rem;outline:none;transition:border-color .2s,box-shadow .2s;
+}
+.text-input:focus,.textarea-input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(90,138,60,.12)}
+.text-input::placeholder,.textarea-input::placeholder{color:var(--gold-l)}
+.textarea-input{min-height:100px;resize:vertical;line-height:1.7}
+
+.date-row{display:flex;align-items:center;gap:.3rem;flex-wrap:wrap}
+.date-select{
+  font-family:inherit;font-size:.86rem;color:var(--text);
+  background:var(--cream);border:1.5px solid var(--gold-l);border-radius:var(--radius-sm);
+  padding:.5rem .45rem;outline:none;appearance:none;-webkit-appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a7568' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right .5rem center;padding-right:1.6rem;cursor:pointer;transition:border-color .2s;
+}
+.date-select:focus{border-color:var(--green)}
+.date-select.year{min-width:85px}
+.date-select.month,.date-select.day{min-width:65px}
+.date-unit{font-size:.8rem;color:var(--text-l);margin:0 .1rem}
+
+.option-group{display:flex;flex-wrap:wrap;gap:.45rem}
+.option-pill{position:relative}
+.option-pill input{position:absolute;opacity:0;width:0;height:0}
+.option-pill label{
+  display:inline-flex;align-items:center;gap:.3rem;font-size:.8rem;
+  padding:.45rem .9rem;border-radius:30px;border:1.5px solid var(--gold-l);
+  background:var(--cream);cursor:pointer;transition:all .2s;user-select:none;
+}
+.option-pill label::before{
+  content:'';width:14px;height:14px;border-radius:50%;border:2px solid var(--gold-l);flex-shrink:0;transition:all .2s;
+}
+.option-pill input:checked+label{border-color:var(--green);background:var(--green-bg);color:var(--text)}
+.option-pill input:checked+label::before{border-color:var(--green);background:var(--green);box-shadow:inset 0 0 0 3px #fff}
+
+.submit-section{text-align:center;margin-top:1.5rem}
+.submit-btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:linear-gradient(135deg,var(--green),var(--green-l));color:#fff;
+  font-family:inherit;font-size:.92rem;font-weight:700;padding:.75rem 2.2rem;
+  border:none;border-radius:40px;cursor:pointer;transition:transform .15s,box-shadow .15s;
+  box-shadow:0 4px 16px rgba(90,138,60,.3);letter-spacing:.04em;
+}
+.submit-btn:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(90,138,60,.35)}
+.submit-btn:active{transform:translateY(0)}
+.submit-btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+
+.success-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(62,58,48,.4);z-index:100;align-items:center;justify-content:center;padding:1.5rem}
+.success-overlay.show{display:flex}
+.success-box{background:var(--white);border-radius:var(--radius);box-shadow:0 8px 40px rgba(62,58,48,.15);padding:2rem 1.5rem;text-align:center;max-width:380px;width:100%}
+.success-emoji{font-size:2.2rem;margin-bottom:.4rem}
+.success-box h2{font-family:'Shippori Mincho',serif;font-size:1.05rem;font-weight:600;margin-bottom:.4rem}
+.success-box p{font-size:.8rem;color:var(--text-l);line-height:1.9;margin-bottom:1rem}
+.success-close{display:inline-block;background:var(--green);color:#fff;font-family:inherit;font-size:.82rem;font-weight:700;padding:.55rem 1.6rem;border:none;border-radius:30px;cursor:pointer;text-decoration:none}
+
+.field-error{color:#c0392b;font-size:.73rem;margin-top:.3rem;display:none}
+.field.has-error .field-error{display:block}
+.field.has-error .text-input,.field.has-error .textarea-input{border-color:#c0392b}
+.field.has-error .date-select{border-color:#c0392b}
+
+.back-link{text-align:center;padding:.5rem 1rem 1.2rem}
+.back-link a{font-size:.76rem;color:var(--text-l);text-decoration:none;border-bottom:1px dotted var(--text-l)}
+.footer{text-align:center;padding:1.2rem 1rem;margin-top:auto;font-size:.68rem;color:var(--text-l);background:var(--warm)}
+
+@media(min-width:600px){.hero h1{font-size:1.35rem}}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <a href="https://tumugi-fpd.github.io/">
+    <img src="https://tumugi-fpd.github.io/icon.png" alt="つむぎ" class="header-icon">
+  </a>
+  <div class="header-name">つむぎ</div>
+</header>
+
+<section class="hero">
+  <div class="hero-emoji">🍀</div>
+  <h1>無料ミニ鑑定<br>お申し込み</h1>
+  <p>オープンチャットが苦手な方も大丈夫。<br>
+    こちらから申し込んでくれたら、<br>
+    メールアドレスに直接届けるからね。</p>
+</section>
+
+<div class="intro-card">
+  <h2>🍀 つむぎからのお願い</h2>
+  <p>お悩みの内容は、できるだけ具体的に書いてくれると<br>より深く視ることができるよ。</p>
+  <div class="intro-note">鑑定結果はメールでお届けします。<br>通常3〜7日ほどお時間をいただいています。</div>
+</div>
+
+<div class="form-wrap">
+  <div class="form-card">
+    <div id="mainForm">
+
+      <div class="field" id="f-name">
+        <div class="field-label">お名前 <span class="badge">必須</span></div>
+        <div class="field-hint">ニックネームでも構いません</div>
+        <input type="text" class="text-input" id="name" placeholder="例：みなみ" required>
+        <div class="field-error">お名前を入力してね</div>
+      </div>
+
+      <div class="field" id="f-email">
+        <div class="field-label">メールアドレス <span class="badge">必須</span></div>
+        <div class="field-hint">鑑定結果をお届けするアドレスだよ</div>
+        <input type="email" class="text-input" id="email" placeholder="例：tsumugi@example.com" required>
+        <div class="field-error">メールアドレスを入力してね</div>
+      </div>
+
+      <div class="field" id="f-birthday">
+        <div class="field-label">生年月日 <span class="badge">必須</span></div>
+        <div class="date-row">
+          <select class="date-select year" id="bYear"><option value="">年</option></select>
+          <span class="date-unit">年</span>
+          <select class="date-select month" id="bMonth"><option value="">月</option></select>
+          <span class="date-unit">月</span>
+          <select class="date-select day" id="bDay"><option value="">日</option></select>
+          <span class="date-unit">日</span>
+        </div>
+        <div class="field-error">生年月日を選んでね</div>
+      </div>
+
+      <div class="field" id="f-gender">
+        <div class="field-label">性別 <span class="badge">必須</span></div>
+        <div class="option-group">
+          <div class="option-pill"><input type="radio" name="gender" id="g-f" value="女性"><label for="g-f">女性</label></div>
+          <div class="option-pill"><input type="radio" name="gender" id="g-m" value="男性"><label for="g-m">男性</label></div>
+          <div class="option-pill"><input type="radio" name="gender" id="g-x" value="回答したくない"><label for="g-x">回答したくない</label></div>
+        </div>
+        <div class="field-error">選んでね</div>
+      </div>
+
+      <div class="field" id="f-genre">
+        <div class="field-label">今一番気になっていること <span class="badge">必須</span></div>
+        <div class="field-hint">恋愛・仕事・家族・お金など、何でも</div>
+        <div class="option-group">
+          <div class="option-pill"><input type="radio" name="genre" id="j1" value="恋愛"><label for="j1">恋愛</label></div>
+          <div class="option-pill"><input type="radio" name="genre" id="j2" value="夫婦関係"><label for="j2">夫婦関係</label></div>
+          <div class="option-pill"><input type="radio" name="genre" id="j3" value="離婚"><label for="j3">離婚</label></div>
+          <div class="option-pill"><input type="radio" name="genre" id="j4" value="仕事"><label for="j4">仕事</label></div>
+          <div class="option-pill"><input type="radio" name="genre" id="j5" value="人間関係"><label for="j5">人間関係</label></div>
+          <div class="option-pill"><input type="radio" name="genre" id="j6" value="金運"><label for="j6">金運</label></div>
+          <div class="option-pill"><input type="radio" name="genre" id="j7" value="その他"><label for="j7">その他</label></div>
+        </div>
+        <div class="field-error">ひとつ選んでね</div>
+      </div>
+
+      <div class="field" id="f-concern">
+        <div class="field-label">お悩みの内容</div>
+        <div class="field-hint">具体的に書いてくれると、より深く視えるよ</div>
+        <textarea class="textarea-input" id="concern" placeholder="例：離婚を考えているけど、子どものことを思うと踏み出せなくて…"></textarea>
+      </div>
+
+      <div class="submit-section">
+        <button type="button" class="submit-btn" id="submitBtn" onclick="submitForm()">🍀 送信する</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="back-link">
+  <a href="https://tumugi-fpd.github.io/">&larr; つむぎのページに戻る</a>
+</div>
+
+<footer class="footer">&copy; 2024 tsumugi. All rights reserved.</footer>
+
+<div class="success-overlay" id="successModal">
+  <div class="success-box">
+    <div class="success-emoji">🍀✨</div>
+    <h2>送信できたよ！</h2>
+    <p>ミニ鑑定の結果は、<br>3〜7日以内にメールでお届けするね。<br>楽しみに待っていてね。</p>
+    <a href="https://tumugi-fpd.github.io/" class="success-close">つむぎのページへ</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var yS=document.getElementById('bYear'),mS=document.getElementById('bMonth'),dS=document.getElementById('bDay');
+  var now=new Date().getFullYear();
+  for(var y=now;y>=1940;y--){var o=document.createElement('option');o.value=y;o.textContent=y;yS.appendChild(o)}
+  for(var m=1;m<=12;m++){var o=document.createElement('option');o.value=m;o.textContent=m;mS.appendChild(o)}
+  for(var d=1;d<=31;d++){var o=document.createElement('option');o.value=d;o.textContent=d;dS.appendChild(o)}
+})();
+function submitForm(){
+  document.querySelectorAll('.field').forEach(function(f){f.classList.remove('has-error')});
+  var name=document.getElementById('name').value.trim();
+  var email=document.getElementById('email').value.trim();
+  var y=document.getElementById('bYear').value;
+  var m=document.getElementById('bMonth').value;
+  var d=document.getElementById('bDay').value;
+  var gender=document.querySelector('input[name="gender"]:checked');
+  var genre=document.querySelector('input[name="genre"]:checked');
+  var concern=document.getElementById('concern').value.trim();
+  var ok=true;
+  if(!name){document.getElementById('f-name').classList.add('has-error');ok=false}
+  if(!email||!email.includes('@')){document.getElementById('f-email').classList.add('has-error');ok=false}
+  if(!y||!m||!d){document.getElementById('f-birthday').classList.add('has-error');ok=false}
+  if(!gender){document.getElementById('f-gender').classList.add('has-error');ok=false}
+  if(!genre){document.getElementById('f-genre').classList.add('has-error');ok=false}
+  if(!ok){document.querySelector('.has-error').scrollIntoView({behavior:'smooth',block:'center'});return}
+  var btn=document.getElementById('submitBtn');
+  btn.disabled=true;btn.textContent='送信中...';
+  var fd=new FormData();
+  fd.append('entry.1572175011',name);
+  fd.append('entry.273773435',email);
+  fd.append('entry.1482035095_year',y);
+  fd.append('entry.1482035095_month',m);
+  fd.append('entry.1482035095_day',d);
+  fd.append('entry.1852552892',gender.value);
+  fd.append('entry.367342385',genre.value);
+  if(concern)fd.append('entry.1532815527',concern);
+  fetch('https://docs.google.com/forms/d/e/1FAIpQLScZLcx-VO5yPza4ZBV8yI2KjjyK6yFccvWWUlQ8Y5VkOFgLNw/formResponse',{method:'POST',body:fd,mode:'no-cors'})
+    .then(function(){document.getElementById('successModal').classList.add('show')})
+    .catch(function(){document.getElementById('successModal').classList.add('show')})
+    .finally(function(){btn.disabled=false;btn.textContent='🍀 送信する'});
+}
+</script>
+</body>
+</html>
