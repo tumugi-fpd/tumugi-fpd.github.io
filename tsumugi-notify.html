@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>募集開始のお知らせ登録｜つむぎ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --gold:#c9a84c;--gold-l:#e2d1a0;--gold-xl:#f0e8d4;
+  --green:#5a8a3c;--green-l:#8db573;--green-bg:#eef4e8;
+  --cream:#faf8f2;--warm:#f5f0e5;--white:#fff;
+  --text:#3e3a30;--text-l:#7a7568;--text-placeholder:#b8b0a0;
+  --radius:14px;--shadow:0 4px 24px rgba(62,58,48,.08);
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Zen Maru Gothic',sans-serif;
+  background:var(--cream);color:var(--text);line-height:1.8;
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:1.5rem;
+}
+
+.card{
+  background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);
+  max-width:420px;width:100%;padding:2rem 1.5rem;text-align:center;
+  position:relative;overflow:hidden;
+}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--green),var(--gold))}
+
+.card-icon{width:56px;height:56px;border-radius:50%;object-fit:cover;margin-bottom:.5rem;border:2px solid var(--gold-l)}
+.card-name{font-family:'Shippori Mincho',serif;font-size:.75rem;color:var(--text-l);margin-bottom:1rem;letter-spacing:.12em}
+
+.card-emoji{font-size:1.6rem;margin-bottom:.3rem}
+.card-title{font-family:'Shippori Mincho',serif;font-size:1.05rem;font-weight:600;margin-bottom:.5rem;letter-spacing:.06em}
+.card-desc{font-size:.8rem;color:var(--text-l);line-height:1.9;margin-bottom:1.2rem}
+
+.field{margin-bottom:1rem;text-align:left}
+.field-label{font-size:.82rem;font-weight:700;margin-bottom:.3rem}
+.text-input{
+  width:100%;font-family:inherit;font-size:.86rem;color:var(--text);
+  background:var(--cream);border:1.5px solid var(--gold-l);border-radius:10px;
+  padding:.65rem .85rem;outline:none;transition:border-color .2s,box-shadow .2s;
+}
+.text-input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(90,138,60,.12)}
+.text-input::placeholder{color:var(--text-placeholder)}
+.field-error{color:#c0392b;font-size:.72rem;margin-top:.2rem;display:none}
+.field.has-error .field-error{display:block}
+.field.has-error .text-input{border-color:#c0392b}
+
+.submit-btn{
+  display:inline-flex;align-items:center;gap:.4rem;
+  background:linear-gradient(135deg,var(--green),var(--green-l));color:#fff;
+  font-family:inherit;font-size:.88rem;font-weight:700;padding:.7rem 2rem;
+  border:none;border-radius:40px;cursor:pointer;margin-top:.5rem;
+  box-shadow:0 4px 16px rgba(90,138,60,.3);transition:transform .15s;
+}
+.submit-btn:hover{transform:translateY(-2px)}
+.submit-btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+
+.note{font-size:.68rem;color:var(--text-l);margin-top:1rem;line-height:1.7}
+
+.back-link{margin-top:1rem}
+.back-link a{font-size:.75rem;color:var(--text-l);text-decoration:none;border-bottom:1px dotted var(--text-l)}
+
+.success{display:none}
+.success.show{display:block}
+.success .card-emoji{font-size:2rem}
+.hide{display:none}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <img src="https://tumugi-fpd.github.io/tumugi-prof.png" alt="つむぎ" class="card-icon">
+  <div class="card-name">つむぎ</div>
+
+  <div id="formArea">
+    <div class="card-emoji">🔔</div>
+    <h1 class="card-title">募集開始のお知らせ登録</h1>
+    <p class="card-desc">
+      本鑑定の次回募集開始を<br>メールでお知らせするよ。<br>
+      ミニ鑑定の時と同じメールアドレスを<br>入力してね。
+    </p>
+
+    <div class="field" id="f-email">
+      <div class="field-label">メールアドレス</div>
+      <input type="email" class="text-input" id="email" placeholder="例：tsumugi@example.com">
+      <div class="field-error">メールアドレスを入力してね</div>
+    </div>
+
+    <button type="button" class="submit-btn" id="submitBtn" onclick="submitForm()">🍀 登録する</button>
+
+    <p class="note">
+      ※ STORESの「再入荷お知らせ」の方が早く届く場合があります。<br>
+      あわせてご登録いただくのがおすすめです。
+    </p>
+  </div>
+
+  <div id="successArea" class="success">
+    <div class="card-emoji">🍀✨</div>
+    <h2 class="card-title">登録できたよ！</h2>
+    <p class="card-desc">募集開始の時にメールでお知らせするね。<br>楽しみに待っていてね。</p>
+  </div>
+</div>
+
+<div class="back-link">
+  <a href="https://tumugi-fpd.github.io/">&larr; つむぎのページに戻る</a>
+</div>
+
+<script>
+function submitForm(){
+  document.querySelectorAll('.field').forEach(function(f){f.classList.remove('has-error')});
+  var email=document.getElementById('email').value.trim();
+  if(!email||!email.includes('@')){document.getElementById('f-email').classList.add('has-error');return}
+  var btn=document.getElementById('submitBtn');
+  btn.disabled=true;btn.textContent='登録中...';
+  var fd=new FormData();
+  fd.append('entry.535362078',email);
+  fetch('https://docs.google.com/forms/d/e/1FAIpQLSfHvseohTKB2zGhJyhQgmqGQHiQXMYKoL64bGd3rPGGsgioJA/formResponse',{method:'POST',body:fd,mode:'no-cors'})
+    .then(function(){
+      document.getElementById('formArea').classList.add('hide');
+      document.getElementById('successArea').classList.add('show');
+    })
+    .catch(function(){
+      document.getElementById('formArea').classList.add('hide');
+      document.getElementById('successArea').classList.add('show');
+    });
+}
+</script>
+</body>
+</html>
