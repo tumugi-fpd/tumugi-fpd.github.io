@@ -252,6 +252,8 @@ body{
   </div>
 </div>
 
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none"></iframe>
+
 <script>
 (function(){
   var yS=document.getElementById('bYear'),mS=document.getElementById('bMonth'),dS=document.getElementById('bDay');
@@ -260,6 +262,7 @@ body{
   for(var m=1;m<=12;m++){var o=document.createElement('option');o.value=m;o.textContent=m;mS.appendChild(o)}
   for(var d=1;d<=31;d++){var o=document.createElement('option');o.value=d;o.textContent=d;dS.appendChild(o)}
 })();
+
 function submitForm(){
   document.querySelectorAll('.field').forEach(function(f){f.classList.remove('has-error')});
   var name=document.getElementById('name').value.trim();
@@ -277,24 +280,43 @@ function submitForm(){
   if(!gender){document.getElementById('f-gender').classList.add('has-error');ok=false}
   if(!genre){document.getElementById('f-genre').classList.add('has-error');ok=false}
   if(!ok){document.querySelector('.has-error').scrollIntoView({behavior:'smooth',block:'center'});return}
+
   var btn=document.getElementById('submitBtn');
   btn.disabled=true;btn.textContent='送信中...';
-  var fd=new FormData();
-  fd.append('entry.1572175011',name);
-  fd.append('entry.273773435',email);
-  fd.append('entry.1482035095_year',y);
-  fd.append('entry.1482035095_month',m);
-  fd.append('entry.1482035095_day',d);
-  fd.append('entry.1482035095',y+'-'+String(m).padStart(2,'0')+'-'+String(d).padStart(2,'0'));
-  fd.append('entry.1852552892',gender.value);
-  fd.append('entry.367342385',genre.value);
-  if(concern)fd.append('entry.1532815527',concern);
+
+  var form=document.createElement('form');
+  form.method='POST';
+  form.action='https://docs.google.com/forms/d/e/1FAIpQLScZLcx-VO5yPza4ZBV8yI2KjjyK6yFccvWWUlQ8Y5VkOFgLNw/formResponse';
+  form.target='hidden_iframe';
+  form.style.display='none';
+
+  var fields={
+    'entry.1572175011':name,
+    'entry.273773435':email,
+    'entry.1482035095_year':y,
+    'entry.1482035095_month':m,
+    'entry.1482035095_day':d,
+    'entry.1852552892':gender.value,
+    'entry.367342385':genre.value
+  };
+  if(concern)fields['entry.1532815527']=concern;
   var notify=document.getElementById('notify').checked;
-  if(notify)fd.append('entry.1010713779','本鑑定の次回募集開始をメールで知らせてほしい');
-  fetch('https://docs.google.com/forms/d/e/1FAIpQLScZLcx-VO5yPza4ZBV8yI2KjjyK6yFccvWWUlQ8Y5VkOFgLNw/formResponse',{method:'POST',body:fd,mode:'no-cors'})
-    .then(function(){document.getElementById('successModal').classList.add('show')})
-    .catch(function(){document.getElementById('successModal').classList.add('show')})
-    .finally(function(){btn.disabled=false;btn.textContent='🍀 送信する'});
+  if(notify)fields['entry.1010713779']='本鑑定の次回募集開始をメールで知らせてほしい';
+
+  for(var key in fields){
+    var input=document.createElement('input');
+    input.type='hidden';input.name=key;input.value=fields[key];
+    form.appendChild(input);
+  }
+
+  document.body.appendChild(form);
+  form.submit();
+  document.body.removeChild(form);
+
+  setTimeout(function(){
+    document.getElementById('successModal').classList.add('show');
+    btn.disabled=false;btn.textContent='🍀 送信する';
+  },1500);
 }
 </script>
 </body>
